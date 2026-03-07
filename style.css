@@ -17,10 +17,14 @@ body {
 }
 
 .logo {
-    font-size: 34px;
-    font-weight: 600;
     margin-bottom: 60px;
     text-align: center;
+}
+
+.logo img {
+    width: 260px;
+    max-width: 80%;
+    height: auto;
 }
 
 .controls {
