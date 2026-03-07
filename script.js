@@ -16,7 +16,7 @@ playButton.addEventListener("click", function () {
     } else {
 
         // если было на паузе → запускаем
-        playButton.textContent = "⏸";
+        playButton.textContent = "||";
         isPlaying = true;
 
     }
