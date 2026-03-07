@@ -108,7 +108,52 @@ transform:scale(1.05);
 margin-top:90px;
 }
 
-input[type="range"]{
-width:520px;
-height:8px;
+/* громкость */
+
+input[type="range"] {
+
+    width:520px;
+    height:16px;
+
+    appearance:none;
+    -webkit-appearance:none;
+
+    background:#4b0f5f;
+
+    border-radius:10px;
+
+    outline:none;
+}
+
+/* бегунок */
+
+input[type="range"]::-webkit-slider-thumb {
+
+    appearance:none;
+    -webkit-appearance:none;
+
+    width:28px;
+    height:28px;
+
+    border-radius:50%;
+
+    background:white;
+
+    cursor:pointer;
+
+}
+
+input[type="range"]::-moz-range-thumb {
+
+    width:28px;
+    height:28px;
+
+    border-radius:50%;
+
+    background:white;
+
+    cursor:pointer;
+
+    border:none;
+
 }
