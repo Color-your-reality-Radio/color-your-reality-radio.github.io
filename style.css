@@ -102,58 +102,60 @@ background:rgba(255,255,255,0.35);
 transform:scale(1.05);
 }
 
-/* громкость */
+/* блок громкости */
 
 .volume{
 margin-top:90px;
 }
 
-/* громкость */
+/* регулятор громкости */
 
-input[type="range"] {
+input[type="range"]{
 
-    width:520px;
-    height:16px;
+width:520px;
+height:16px;
 
-    appearance:none;
-    -webkit-appearance:none;
+appearance:none;
+-webkit-appearance:none;
+-moz-appearance:none;
 
-    background:#4b0f5f;
+background:#4b0f5f;
 
-    border-radius:10px;
+border-radius:10px;
 
-    outline:none;
+outline:none;
+
 }
 
 /* бегунок */
 
-input[type="range"]::-webkit-slider-thumb {
+input[type="range"]::-webkit-slider-thumb{
 
-    appearance:none;
-    -webkit-appearance:none;
+appearance:none;
+-webkit-appearance:none;
 
-    width:28px;
-    height:28px;
+width:28px;
+height:28px;
 
-    border-radius:50%;
+border-radius:50%;
 
-    background:white;
+background:white;
 
-    cursor:pointer;
+cursor:pointer;
 
 }
 
-input[type="range"]::-moz-range-thumb {
+input[type="range"]::-moz-range-thumb{
 
-    width:28px;
-    height:28px;
+width:28px;
+height:28px;
 
-    border-radius:50%;
+border-radius:50%;
 
-    background:white;
+background:white;
 
-    cursor:pointer;
+cursor:pointer;
 
-    border:none;
+border:none;
 
 }
