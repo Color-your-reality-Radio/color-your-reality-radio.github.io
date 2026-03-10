@@ -2,13 +2,8 @@
 // ПОЛУЧАЕМ ЭЛЕМЕНТЫ СТРАНИЦЫ
 // ===============================
 
-// кнопка Play
 const playButton = document.getElementById("playButton");
-
-// кнопка Next
 const nextButton = document.getElementById("nextButton");
-
-// регулятор громкости
 const volume = document.getElementById("volume");
 
 
@@ -23,53 +18,51 @@ let isPlaying = false;
 // AUDIO ENGINE
 // ===============================
 
-// создаём аудио объект
 const audio = new Audio();
-
-// предзагрузка аудио
 audio.preload = "auto";
-
-// применяем текущую громкость
 audio.volume = volume.value / 100;
 
 
 // ===============================
-// СПИСКИ ТРЕКОВ
+// КОЛИЧЕСТВО ФАЙЛОВ
 // ===============================
 
-// список музыкальных треков
+// указываешь только количество
 
-const tracks = [
-
-"audio/tracks/cyrr_track_01.mp3",
-"audio/tracks/cyrr_track_02.mp3",
-"audio/tracks/cyrr_track_03.mp3"
-
-];
+const TRACK_COUNT = 3;
+const JINGLE_COUNT = 2;
 
 
-// список джинглов
+// ===============================
+// АВТОСОЗДАНИЕ СПИСКОВ ФАЙЛОВ
+// ===============================
 
-const jingles = [
+const tracks = [];
+const jingles = [];
 
-"audio/jingles/cyrr_jingle_01.mp3",
-"audio/jingles/cyrr_jingle_02.mp3"
+for(let i=1;i<=TRACK_COUNT;i++){
 
-];
+let number = String(i).padStart(3,"0");
+
+tracks.push(`audio/tracks/cyrr_track_${number}.mp3`);
+
+}
+
+for(let i=1;i<=JINGLE_COUNT;i++){
+
+let number = String(i).padStart(3,"0");
+
+jingles.push(`audio/jingles/cyrr_jingle_${number}.mp3`);
+
+}
 
 
 // ===============================
 // AUTO DJ ЛОГИКА
 // ===============================
 
-// сколько треков уже сыграло
 let tracksPlayed = 0;
-
-// случайное число треков до джингла (3 или 4)
 let tracksUntilJingle = getRandomTracksCount();
-
-
-// функция случайного выбора 3 или 4
 
 function getRandomTracksCount(){
 
@@ -115,7 +108,7 @@ return jingles[index];
 
 
 // ===============================
-// СЛЕДУЮЩИЙ ЭЛЕМЕНТ РАДИО
+// СЛЕДУЮЩИЙ ЭЛЕМЕНТ
 // ===============================
 
 function playNext(){
@@ -124,8 +117,6 @@ let source;
 
 if(tracksPlayed >= tracksUntilJingle){
 
-// играем джингл
-
 source = getRandomJingle();
 
 tracksPlayed = 0;
@@ -133,8 +124,6 @@ tracksPlayed = 0;
 tracksUntilJingle = getRandomTracksCount();
 
 }else{
-
-// играем музыкальный трек
 
 source = getRandomTrack();
 
@@ -153,17 +142,15 @@ audio.play();
 // PLAY / PAUSE
 // ===============================
 
-playButton.addEventListener("click", function () {
+playButton.addEventListener("click",function(){
 
-if (isPlaying) {
+if(isPlaying){
 
 audio.pause();
+playButton.textContent="▶";
+isPlaying=false;
 
-playButton.textContent = "▶";
-
-isPlaying = false;
-
-} else {
+}else{
 
 if(!audio.src){
 
@@ -175,9 +162,8 @@ audio.play();
 
 }
 
-playButton.textContent = "||";
-
-isPlaying = true;
+playButton.textContent="||";
+isPlaying=true;
 
 }
 
@@ -185,10 +171,10 @@ isPlaying = true;
 
 
 // ===============================
-// NEXT КНОПКА
+// NEXT
 // ===============================
 
-nextButton.addEventListener("click", function(){
+nextButton.addEventListener("click",function(){
 
 playNext();
 
@@ -196,19 +182,19 @@ playNext();
 
 
 // ===============================
-// АВТОПЕРЕКЛЮЧЕНИЕ ТРЕКОВ
+// АВТОПЕРЕКЛЮЧЕНИЕ
 // ===============================
 
-audio.addEventListener("ended", function(){
+audio.addEventListener("ended",function(){
 
 playNext();
 
 });
 
 
-// если файл не загрузился → следующий
+// если ошибка файла
 
-audio.addEventListener("error", function(){
+audio.addEventListener("error",function(){
 
 playNext();
 
@@ -221,27 +207,20 @@ playNext();
 
 function updateVolumeBackground(){
 
-const value =
-(volume.value - volume.min) /
-(volume.max - volume.min) * 100;
+const value=
+(volume.value-volume.min)/
+(volume.max-volume.min)*100;
 
-volume.style.background =
+volume.style.background=
 `linear-gradient(to right,#4b0f5f 0%,#4b0f5f ${value}%,white ${value}%,white 100%)`;
 
 }
 
+volume.addEventListener("input",function(){
 
-// движение ползунка
-
-volume.addEventListener("input", function(){
-
-audio.volume = volume.value/100;
-
+audio.volume=volume.value/100;
 updateVolumeBackground();
 
 });
-
-
-// при загрузке страницы
 
 updateVolumeBackground();
