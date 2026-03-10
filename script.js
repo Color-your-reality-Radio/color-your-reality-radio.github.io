@@ -26,6 +26,12 @@ let isPlaying = false;
 // создаём аудио объект
 const audio = new Audio();
 
+// предзагрузка аудио
+audio.preload = "auto";
+
+// применяем текущую громкость
+audio.volume = volume.value / 100;
+
 
 // ===============================
 // СПИСКИ ТРЕКОВ
@@ -194,6 +200,15 @@ playNext();
 // ===============================
 
 audio.addEventListener("ended", function(){
+
+playNext();
+
+});
+
+
+// если файл не загрузился → следующий
+
+audio.addEventListener("error", function(){
 
 playNext();
 
