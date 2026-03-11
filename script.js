@@ -29,8 +29,8 @@ audio.volume = volume.value / 100;
 
 // указываешь только количество
 
-const TRACK_COUNT = 3;
-const JINGLE_COUNT = 2;
+const TRACK_COUNT = 29;
+const JINGLE_COUNT = 9;
 
 
 // ===============================
